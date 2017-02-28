@@ -103,7 +103,6 @@ void draw_line(int x0, int y0, int x1, int y1, screen s, color c) {
         //q7
         else{
             int d = a - 2*b;
-            printf("%d,%d to %d,%d\n",x0,y0,x1,y1);
             while(y > ymax){
                 //plot old point
                 plot(s,c,x,y);
