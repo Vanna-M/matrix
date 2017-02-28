@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <math.h>
 
+#include "ml6.h"
+#include "display.h"
+#include "draw.h"
 #include "matrix.h"
 
 /*-------------- void print_matrix() --------------
@@ -116,6 +119,31 @@ void matrix_mult(struct matrix *a, struct matrix *b) {
     //clean up at end
     free_matrix(c);
 
+}
+
+void add_point(struct matrix*m, int x, int y){
+    if (m->cols <= m->lastcol){
+        grow_matrix(m, 2*m->cols);
+    }
+    m->m[0][m->lastcol] = x;
+    m->m[1][m->lastcol] = y;
+    //z
+    m->m[2][m->lastcol] = 0;
+    m->m[3][m->lastcol] = 1;
+
+    m->lastcol++;
+}
+
+void add_edge(struct matrix*m, int x1, int y1, int x2, int y2){
+    add_point(m,x1,y1);
+    add_point(m,x2,y2);
+}
+
+void draw_matrix(struct matrix*m, screen s, color c){
+    int i;
+    for (i = 0; i < m->cols; i+=2){
+        draw_line(m->m[0][i],m->m[1][i], m->m[0][i+1], m->m[1][i+1],s,c);
+    }
 }
 
 

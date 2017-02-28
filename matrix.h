@@ -16,5 +16,9 @@ void print_matrix(struct matrix *m);
 void ident(struct matrix *m);
 void scalar_mult(double x, struct matrix *m);
 void matrix_mult(struct matrix *a, struct matrix *b);
+void add_point(struct matrix*m, int x, int y);
+void add_edge(struct matrix*m, int x1, int y1, int x2, int y2);
+void draw_matrix(struct matrix*m, screen s, color c);
+
 
 #endif
